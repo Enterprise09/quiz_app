@@ -1,0 +1,55 @@
+.auth_container {
+  display: flex;
+  flex-direction: column;
+  max-width: 420px;
+  width: 100%;
+  justify-content: center;
+  justify-items: center;
+  align-self: center;
+  border: 2px dashed lightblue;
+  border-radius: 7px;
+  padding: 20px;
+  background-color: aliceblue;
+}
+
+.auth_form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.client_input,
+.client_submit,
+.social_login_google,
+.social_login_github {
+  border: none;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.login_errorMsg {
+  color: tomato;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.client_submit {
+  cursor: pointer;
+}
+
+.social_login_container {
+  display: flex;
+}
+
+.social_login_google,
+.social_login_github {
+  flex: 1;
+  cursor: pointer;
+}
+
+.social_login_google {
+  margin-right: 20px;
+}
