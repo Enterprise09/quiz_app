@@ -1,0 +1,48 @@
+.profile_container {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-self: center;
+  max-width: 520px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.profile_update_form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+input,
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+}
+
+.profile_updateText {
+  font-size: 16px;
+}
+
+.profile_updateBtn {
+  margin-top: 15px;
+  background-color: rgba(0, 0, 255, 0.644);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+hr {
+  width: 99%;
+  border-radius: 10px;
+  margin-top: 35px;
+}
+
+button {
+  margin-top: 30px;
+  background-color: rgba(255, 99, 71, 0.788);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
