@@ -40,6 +40,11 @@
   cursor: pointer;
 }
 
+.auth_switch {
+  align-self: center;
+  cursor: pointer;
+}
+
 .social_login_container {
   display: flex;
 }

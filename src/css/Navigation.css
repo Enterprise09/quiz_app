@@ -1,0 +1,28 @@
+.nav_container {
+  display: flex;
+  justify-content: center;
+}
+
+ul {
+  display: flex;
+  padding-left: 0px;
+  list-style: none;
+  justify-content: center;
+  justify-items: center;
+  max-width: 520px;
+  width: 100%;
+  border: 1px solid blue;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+li {
+  flex: 1;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  margin: 15px;
+}
