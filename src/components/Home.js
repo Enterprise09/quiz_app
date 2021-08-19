@@ -35,7 +35,7 @@ const Home = () => {
         이런 선입견을 많이 가지고 계신 것을 보았습니다.
       </p>
       <p>
-        하지만 제가 경험한 소위{" "}
+        하지만 제가 경험한 소위
         <span style={{ color: "red", fontWeight: "bold" }}>'코딩'</span>
         이라고 하는
         <br />
@@ -43,9 +43,7 @@ const Home = () => {
         <br />
         너무 재미있고 차근차근 배운다면
         <br />
-        누구라도 <span style={{ color: "red", fontWeight: "bold" }}>
-          쉽게
-        </span>{" "}
+        누구라도 <span style={{ color: "red", fontWeight: "bold" }}>쉽게</span>
         앱을 만들 수 있다고 생각합니다.
       </p>
       <hr />
@@ -67,7 +65,7 @@ const Home = () => {
         <br />
         어느새 나만의 사이트를 만들 수 있을 정도의
         <br />
-        어떻게 보면{" "}
+        어떻게 보면
         <span style={{ color: "red", fontWeight: "bold" }}>수준급의 실력</span>
         을 갖출 수 있도록
         <br />
