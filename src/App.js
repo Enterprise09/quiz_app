@@ -23,18 +23,12 @@ function App() {
     });
   }, []);
   return (
-    <div
-      className="App"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        justifyItems: "center",
-        backgroundColor: "lightcyan",
-        height: "100vh",
-      }}
-    >
-      {init ? <AppRouter isLogin={userObj} /> : <Initialize />}
+    <div className="App">
+      {init ? (
+        <AppRouter isLogin={userObj} userObj={userObj} />
+      ) : (
+        <Initialize />
+      )}
     </div>
   );
 }
