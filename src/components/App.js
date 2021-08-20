@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import Initialize from "./components/Initialize";
-import AppRouter from "./components/Router";
-import { authService } from "./Firebaseconfig";
-import "./css/App.css";
+import Initialize from "./Initialize";
+import AppRouter from "./Router";
+import { authService } from "../Firebaseconfig";
+import "../css/App.css";
 
 function App() {
   const [init, setInit] = useState(false);

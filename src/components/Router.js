@@ -1,13 +1,12 @@
 import React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./Home";
-import Auth from "./Auth";
+import Auth from "../routes/Auth";
+import HtmlQuiz from "../routes/HtmlQuiz";
+import CssQuiz from "../routes/CssQuiz";
+import JsQuiz from "../routes/JsQuiz";
+import Profile from "../routes/Profile";
+import Home from "../routes/Home";
 import Navigation from "./Navigation";
-import HtmlQuiz from "./HtmlQuiz";
-import CssQuiz from "./CssQuiz";
-import JsQuiz from "./JsQuiz";
-import Profile from "./Profile";
-
 const AppRouter = ({ isLogin, userObj }) => {
   return (
     <Router>
