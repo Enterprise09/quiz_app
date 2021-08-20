@@ -1,7 +1,7 @@
 import React from "react";
 
-const Js_quiz = () => {
+const JsQuiz = () => {
   return <h1>hello JS!</h1>;
 };
 
-export default Js_quiz;
+export default JsQuiz;

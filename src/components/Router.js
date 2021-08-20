@@ -3,12 +3,12 @@ import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import Auth from "./Auth";
 import Navigation from "./Navigation";
-import Html_quiz from "./Html_quiz";
-import Css_quiz from "./Css_quiz";
-import Js_quiz from "./Js_quiz";
+import HtmlQuiz from "./HtmlQuiz";
+import CssQuiz from "./CssQuiz";
+import JsQuiz from "./JsQuiz";
 import Profile from "./Profile";
 
-const AppRouter = ({ isLogin }) => {
+const AppRouter = ({ isLogin, userObj }) => {
   return (
     <Router>
       {isLogin && <Navigation />}
@@ -19,16 +19,16 @@ const AppRouter = ({ isLogin }) => {
               <Home />
             </Route>
             <Route exact path="/html">
-              <Html_quiz />
+              <HtmlQuiz />
             </Route>
             <Route exact path="/css">
-              <Css_quiz />
+              <CssQuiz />
             </Route>
             <Route exact path="/js">
-              <Js_quiz />
+              <JsQuiz />
             </Route>
             <Route exact path="/profile">
-              <Profile />
+              <Profile userObj={userObj} />
             </Route>
           </>
         ) : (
