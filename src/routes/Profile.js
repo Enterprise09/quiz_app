@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "../css/Profile.css";
+import { authService } from "../Firebaseconfig";
 
-const Profile = ({ userObj }) => {
-  const [newUserName, setNewUserName] = useState("");
+const Profile = ({ userObj, refreshUser }) => {
+  const history = useHistory();
+  const [newUserName, setNewUserName] = useState(userObj.displayName);
   const onChange = (event) => {
     const {
       target: { value },
@@ -10,9 +13,23 @@ const Profile = ({ userObj }) => {
     setNewUserName(value);
   };
 
-  const onSubmit = () => {};
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    if (userObj.displayName !== newUserName) {
+      // console.log(userObj.displayName);
+      // console.log(newUserName);
+      await userObj.updateProfile({
+        displayName: newUserName,
+      });
+      refreshUser();
+      alert("이름 변경에 성공했습니다.");
+    }
+  };
 
-  const onLogoutClick = () => {};
+  const onLogoutClick = () => {
+    authService.signOut();
+    history.push("/");
+  };
   return (
     <div className="profile_container">
       <form className="profile_update_form" onSubmit={onSubmit}>

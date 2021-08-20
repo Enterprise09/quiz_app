@@ -14,7 +14,7 @@ function App() {
         setUserObj({
           displayName: user.displayName,
           uid: user.uid,
-          updateProgile: (args) => user.updateProfile(args),
+          updateProfile: (args) => user.updateProfile(args),
         });
       } else {
         setUserObj(null);
@@ -22,10 +22,22 @@ function App() {
       setInit(true);
     });
   }, []);
+  const refreshUser = () => {
+    const user = authService.currentUser;
+    setUserObj({
+      displayName: user.displayName,
+      uid: user.uid,
+      updateProfile: (args) => user.updateProfile(args),
+    });
+  };
   return (
     <div className="App">
       {init ? (
-        <AppRouter isLogin={userObj} userObj={userObj} />
+        <AppRouter
+          isLogin={userObj}
+          userObj={userObj}
+          refreshUser={refreshUser}
+        />
       ) : (
         <Initialize />
       )}
