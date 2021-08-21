@@ -6,7 +6,7 @@ import "../css/Community.css";
 const Community = ({ userObj }) => {
   return (
     <div className="comm_container">
-      <span>
+      <span className="comm_userName">
         <FontAwesomeIcon icon={faUser} /> {userObj.displayName}
       </span>
       <div className="comm_chatBox">This place will be chating Box</div>

@@ -3,7 +3,7 @@
   justify-content: center;
 }
 
-ul {
+.nav_ul {
   display: flex;
   padding-left: 0px;
   list-style: none;
@@ -19,7 +19,7 @@ a {
   color: black;
 }
 
-li {
+.nav_li {
   flex: 1;
   font-weight: bold;
   padding: 10px;
