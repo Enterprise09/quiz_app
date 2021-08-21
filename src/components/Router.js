@@ -7,6 +7,7 @@ import JsQuiz from "../routes/JsQuiz";
 import Profile from "../routes/Profile";
 import Home from "../routes/Home";
 import Navigation from "./Navigation";
+import Community from "../routes/Community";
 const AppRouter = ({ isLogin, userObj, refreshUser }) => {
   return (
     <Router>
@@ -25,6 +26,9 @@ const AppRouter = ({ isLogin, userObj, refreshUser }) => {
             </Route>
             <Route exact path="/js">
               <JsQuiz />
+            </Route>
+            <Route exact path="/community">
+              <Community userObj={userObj} />
             </Route>
             <Route exact path="/profile">
               <Profile userObj={userObj} refreshUser={refreshUser} />

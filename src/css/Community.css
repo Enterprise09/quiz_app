@@ -1,0 +1,22 @@
+.comm_container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  max-width: 520px;
+  width: 100%;
+  border: 1px solid red;
+}
+
+span {
+  margin: 20px;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px dashed skyblue;
+}
+
+.comm_chatBox {
+  border: 1px solid green;
+  padding: 10px;
+  margin: 20px;
+}

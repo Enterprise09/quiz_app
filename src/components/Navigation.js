@@ -1,4 +1,5 @@
-import { faHome, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faCss3, faHtml5, faJs } from "@fortawesome/free-brands-svg-icons";
+import { faComment, faHome, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -10,21 +11,32 @@ const Navigation = () => {
       <ul className="nav_ul">
         <Link to="/">
           <li className="nav_li">
-            <FontAwesomeIcon icon={faHome} />
+            <FontAwesomeIcon icon={faHome} size="2x" />
           </li>
         </Link>
         <Link to="/html">
-          <li className="nav_li">HTML</li>
+          <li className="nav_li">
+            <FontAwesomeIcon icon={faHtml5} size="2x" color="#F37745" />
+          </li>
         </Link>
         <Link to="/css">
-          <li className="nav_li">CSS</li>{" "}
+          <li className="nav_li">
+            <FontAwesomeIcon icon={faCss3} size="2x" color="#33A9DC" />
+          </li>
         </Link>
         <Link to="/js">
-          <li className="nav_li">JS</li>{" "}
+          <li className="nav_li">
+            <FontAwesomeIcon icon={faJs} size="2x" color="#FFD936" />
+          </li>
+        </Link>
+        <Link to="/community">
+          <li className="nav_li">
+            <FontAwesomeIcon icon={faComment} size="2x" />
+          </li>
         </Link>
         <Link to="/profile">
           <li className="nav_li">
-            <FontAwesomeIcon icon={faUser} />
+            <FontAwesomeIcon icon={faUser} size="2x" />
           </li>
         </Link>
       </ul>
