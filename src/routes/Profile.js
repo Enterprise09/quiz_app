@@ -42,7 +42,7 @@ const Profile = ({ userObj, refreshUser }) => {
         />
         <input className="profile_updateBtn" type="submit" value="Update" />
       </form>
-      <hr />
+      <hr className="profile_hr" />
       <button
         className="profile_logoutBtn"
         onClick={onLogoutClick}

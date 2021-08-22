@@ -1,3 +1,5 @@
+import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import "../css/Auth.css";
 import { authService, firebaseInstance } from "../Firebaseconfig";
@@ -91,7 +93,7 @@ const Auth = ({ isLogin }) => {
             name="google"
             onClick={onSocialLoginClick}
           >
-            Continue with Google
+            Login with Google <FontAwesomeIcon icon={faGoogle} />
           </button>
           <div className="social_login_empty"></div>
           <button
@@ -100,7 +102,7 @@ const Auth = ({ isLogin }) => {
             name="github"
             onClick={onSocialLoginClick}
           >
-            Continue with Github
+            Login with Github <FontAwesomeIcon icon={faGithub} />
           </button>
         </div>
       </div>

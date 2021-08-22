@@ -7,7 +7,7 @@ import "../css/HtmlQuiz.css";
 const HtmlQuiz = () => {
   return (
     <div className="htmlQuiz_container">
-      <span>
+      <span className="htmlQuiz_headline">
         <FontAwesomeIcon icon={faHtml5} color="#F37745" /> HTML퀴즈!
       </span>
       <ul className="htmlQuiz_ul">

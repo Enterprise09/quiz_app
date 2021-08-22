@@ -7,7 +7,7 @@
   border: 1px solid red;
 }
 
-span {
+.htmlQuiz_headline {
   margin: 20px;
   padding: 10px;
   font-size: 20px;
@@ -28,5 +28,5 @@ span {
   margin: 10px;
   padding: 15px;
   border-radius: 10px;
-  border: 1px solid green;
+  border: 1px solid rgb(185, 185, 185);
 }
