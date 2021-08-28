@@ -4,19 +4,136 @@
   align-self: center;
   max-width: 520px;
   width: 100%;
-  border: 1px solid red;
+  box-shadow: 1px 2px 3px 1px rgb(135, 145, 233);
+  /* border: 1px solid red; */
 }
 
 .comm_userName {
-  margin: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 20px;
   padding: 10px;
   font-size: 20px;
   font-weight: bold;
   border: 1px dashed skyblue;
 }
 
-.comm_chatBox {
-  border: 1px solid green;
+.comm_chatcontainer {
+  display: flex;
+  flex-direction: column;
   padding: 10px;
   margin: 20px;
+  margin-top: 10px;
+}
+
+.comm_chatForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px;
+  margin-top: 10px;
+}
+
+.comm_formBox {
+  margin: 20px;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.comm_input,
+.comm_submit {
+  padding: 10px;
+  border: none;
+  font-size: 16px;
+}
+
+.comm_input {
+  flex: 1;
+}
+
+.comm_submit {
+  background-color: white;
+  position: relative;
+  cursor: pointer;
+}
+
+.comm_photoLabel {
+  cursor: pointer;
+}
+
+.comm_photoText {
+  font-weight: bold;
+  font-size: 14px;
+  color: #4c6ef5;
+}
+
+.comm_photo {
+  display: none;
+}
+
+.comm_photoPrevBox {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  margin-top: 30px;
+}
+
+.photo_prevClearBtn {
+  margin-top: 20px;
+}
+
+.comm_chatBox {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 3px 3px 3px 1px rgb(167, 195, 238);
+}
+
+.comm_chatText {
+  text-align: left;
+  padding-left: 15px;
+  flex: 5;
+  font-size: 18px;
+}
+
+.comm_img {
+  border-radius: 5px;
+}
+
+.comm_chateditingBox {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 25px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  cursor: pointer;
+  border: 1px dashed red;
+  border-radius: 4px;
+  box-shadow: 3px 3px 3px 1px rgb(167, 195, 238);
+}
+
+.comm_chateditingText {
+  text-align: left;
+  flex: 5;
+  font-size: 18px;
+}
+
+.comm_editingimg {
+  margin-top: 20px;
+}
+
+.comm_edit_btnBox {
+  display: flex;
+  margin-top: 10px;
+}
+
+.comm_editClearBtn,
+.comm_edit_submitBtn {
+  flex: 1;
 }
