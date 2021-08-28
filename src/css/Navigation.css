@@ -23,9 +23,12 @@ a :hover {
 }
 
 .nav_li {
-  flex: 1;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
   font-weight: bold;
   padding: 10px;
-  margin: 8px;
+  margin: 9px;
   box-shadow: 2px 2px 2px 1px rgb(143, 145, 224);
+  width: 30px;
 }
