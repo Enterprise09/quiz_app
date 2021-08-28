@@ -1,15 +1,33 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../css/Community.css";
+import { dbService, storageService } from "../Firebaseconfig";
+import SendMessage from "../components/SendMessage";
+import DisplayMessage from "../components/DisplayMessage";
 
 const Community = ({ userObj }) => {
+  const [messages, setMessages] = useState([]);
+  useEffect(() => {
+    dbService.collection("message").onSnapshot((snapshot) => {
+      const messageArr = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setMessages(messageArr);
+    });
+  }, []);
   return (
     <div className="comm_container">
       <span className="comm_userName">
         <FontAwesomeIcon icon={faUser} /> {userObj.displayName}
       </span>
-      <div className="comm_chatBox">This place will be chating Box</div>
+      <SendMessage userObj={userObj} />
+      <div className="comm_chatcontainer">
+        {messages.map((message) => (
+          <DisplayMessage message={message} />
+        ))}
+      </div>
     </div>
   );
 };
