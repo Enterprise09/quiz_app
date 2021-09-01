@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { dbService } from "../Firebaseconfig";
 
 const DisplayMessage = ({ message }) => {
@@ -11,14 +11,13 @@ const DisplayMessage = ({ message }) => {
     setEditing((prev) => !prev);
   };
   const onClearButtonClick = () => {
-    message.attachmentUrl = "";
+    const ok = window.confirm("사진을 삭제하시겠습니까?");
+    if (ok) {
+      setNewAttachmentUrl("");
+    }
   };
   const onSubmit = (event) => {
     event.preventDefault();
-    // await dbService.doc(`message/${message.id}`).update({
-    //   text: newTextMessage,
-    //   attachmentUrl: newAttachmentUrl,
-    // });
   };
   const onChange = (event) => {
     const {
@@ -26,6 +25,7 @@ const DisplayMessage = ({ message }) => {
     } = event;
     setNewTextMessage(data);
   };
+  const onAddPhotoClick = () => {};
   return (
     <>
       {editing ? (
@@ -37,22 +37,32 @@ const DisplayMessage = ({ message }) => {
               value={newTextMessage}
               onChange={onChange}
             />
-            {message.attachmentUrl ? (
+            {newAttachmentUrl && (
+              <img className="comm_editingimg" src={message.attachmentUrl} />
+            )}
+            {/* {message.attachmentUrl ? (
               <img className="comm_editingimg" src={message.attachmentUrl} />
             ) : (
               <img
                 className="comm_editingimg"
                 style={{ visibility: "hidden" }}
               />
-            )}
+            )} */}
             <div className="comm_edit_btnBox">
-              <button
-                onClick={onClearButtonClick}
-                className="comm_editClearBtn"
-                type="button"
-              >
-                Clear Photo
-              </button>
+              {message.attachmentUrl ? (
+                <button
+                  onClick={onClearButtonClick}
+                  className="comm_editClearBtn"
+                  type="button"
+                >
+                  Clear Photo
+                </button>
+              ) : (
+                <button type="button" onClick={onAddPhotoClick}>
+                  Add Photo
+                </button>
+              )}
+
               <button className="comm_edit_submitBtn" type="submit">
                 Update
               </button>

@@ -27,7 +27,7 @@ const SendMessage = ({ userObj }) => {
     };
     reader.readAsDataURL(theFile);
   };
-  const onClearPhoto = (event) => {
+  const onClearPhoto = () => {
     setAttachment("");
   };
   const onSubmit = async (event) => {
