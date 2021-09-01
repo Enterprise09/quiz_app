@@ -25,7 +25,7 @@ const Community = ({ userObj }) => {
       <SendMessage userObj={userObj} />
       <div className="comm_chatcontainer">
         {messages.map((message) => (
-          <DisplayMessage message={message} />
+          <DisplayMessage key={message.id} message={message} />
         ))}
       </div>
     </div>
