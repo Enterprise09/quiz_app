@@ -134,6 +134,7 @@
 }
 
 .comm_editClearBtn,
-.comm_edit_submitBtn {
+.comm_edit_submitBtn,
+.comm_edit_cancelBtn {
   flex: 1;
 }
