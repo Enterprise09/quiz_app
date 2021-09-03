@@ -9,6 +9,7 @@ const DisplayMessage = ({ message }) => {
   );
   const toggleEditing = () => {
     setEditing((prev) => !prev);
+    setNewAttachmentUrl(message.attachmentUrl);
   };
   const onClearButtonClick = () => {
     const ok = window.confirm("사진을 삭제하시겠습니까?");
@@ -40,16 +41,8 @@ const DisplayMessage = ({ message }) => {
             {newAttachmentUrl && (
               <img className="comm_editingimg" src={message.attachmentUrl} />
             )}
-            {/* {message.attachmentUrl ? (
-              <img className="comm_editingimg" src={message.attachmentUrl} />
-            ) : (
-              <img
-                className="comm_editingimg"
-                style={{ visibility: "hidden" }}
-              />
-            )} */}
             <div className="comm_edit_btnBox">
-              {message.attachmentUrl ? (
+              {newAttachmentUrl ? (
                 <button
                   onClick={onClearButtonClick}
                   className="comm_editClearBtn"
@@ -58,14 +51,14 @@ const DisplayMessage = ({ message }) => {
                   Clear Photo
                 </button>
               ) : (
-                <button type="button" onClick={onAddPhotoClick}>
-                  Add Photo
-                </button>
+                <input className="comm_addphotoBtn" />
               )}
 
-              <button className="comm_edit_submitBtn" type="submit">
-                Update
-              </button>
+              <input
+                type="submit"
+                className="comm_edit_submitBtn"
+                value="Update"
+              />
               <button
                 className="comm_edit_cancelBtn"
                 type="button"
