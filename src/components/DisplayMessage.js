@@ -26,6 +26,20 @@ const DisplayMessage = ({ message }) => {
     } = event;
     setNewTextMessage(data);
   };
+  const onFileChange = (event) => {
+    const {
+      target: { files },
+    } = event;
+    const theFile = files[0];
+    const reader = new FileReader();
+    reader.onloadend = (finishEvent) => {
+      const {
+        currentTarget: { result },
+      } = finishEvent;
+      setNewAttachmentUrl(result);
+    };
+    reader.readAsDataURL(theFile);
+  };
   const onAddPhotoClick = () => {};
   return (
     <>
@@ -39,7 +53,7 @@ const DisplayMessage = ({ message }) => {
               onChange={onChange}
             />
             {newAttachmentUrl && (
-              <img className="comm_editingimg" src={message.attachmentUrl} />
+              <img className="comm_editingimg" src={newAttachmentUrl} />
             )}
             <div className="comm_edit_btnBox">
               {newAttachmentUrl ? (
@@ -51,7 +65,21 @@ const DisplayMessage = ({ message }) => {
                   Clear Photo
                 </button>
               ) : (
-                <input className="comm_addphotoBtn" />
+                <>
+                  <label
+                    className="comm_addphotoBtn"
+                    htmlFor="comm_update_photoBtn"
+                  >
+                    Add Photo
+                  </label>
+                  <input
+                    className="comm_addphotoInput"
+                    id="comm_update_photoBtn"
+                    type="file"
+                    accept="image/*"
+                    onChange={onFileChange}
+                  />
+                </>
               )}
 
               <input

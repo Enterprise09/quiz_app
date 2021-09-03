@@ -138,4 +138,16 @@
 .comm_edit_cancelBtn,
 .comm_addphotoBtn {
   flex: 1;
+  cursor: pointer;
+}
+
+.comm_addphotoBtn {
+  border-radius: 3px;
+  border: 1px solid rgb(97, 97, 97);
+  font-size: 14px;
+  background-color: #f0f0f0;
+}
+
+.comm_addphotoInput {
+  display: none;
 }
