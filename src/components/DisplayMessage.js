@@ -1,8 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { dbService, storageService } from "../Firebaseconfig";
 import { v4 as uuidv4 } from "uuid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEraser,
+  faPhotoVideo,
+  faTrash,
+  faUndo,
+  faWindowClose,
+} from "@fortawesome/free-solid-svg-icons";
+import { icon } from "@fortawesome/fontawesome-svg-core";
+import { faKorvue } from "@fortawesome/free-brands-svg-icons";
 
-const DisplayMessage = ({ message, userObj }) => {
+const DisplayMessage = ({ message, userObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
   const [newTextMessage, setNewTextMessage] = useState(message.text);
   const [newAttachmentUrl, setNewAttachmentUrl] = useState(
@@ -22,10 +32,12 @@ const DisplayMessage = ({ message, userObj }) => {
   const onSubmit = async (event) => {
     event.preventDefault();
     let attachmentUrl = message.attachmentUrl;
-    if (newAttachmentUrl !== message.attachmentUrl) {
+    if (newAttachmentUrl !== message.attachmentUrl && newAttachmentUrl !== "") {
       const photoRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`);
       const response = await photoRef.putString(newAttachmentUrl, "data_url");
       attachmentUrl = await response.ref.getDownloadURL();
+    } else if (newAttachmentUrl === "") {
+      attachmentUrl = newAttachmentUrl;
     }
     await dbService.doc(`message/${message.id}`).update({
       text: newTextMessage + "",
@@ -36,9 +48,18 @@ const DisplayMessage = ({ message, userObj }) => {
   };
   const onChange = (event) => {
     const {
-      target: { data },
+      target: { value },
     } = event;
-    setNewTextMessage(data);
+    setNewTextMessage(value);
+  };
+  const onDeleteButtonClick = async () => {
+    const ok = window.confirm(
+      "이 게시글을 삭제하시겠습니까? 복구할 수 없습니다."
+    );
+    if (ok) {
+      await dbService.doc(`message/${message.id}`).delete();
+      await storageService.refFromURL(message.attachmentUrl).delete();
+    }
   };
   const onFileChange = (event) => {
     const {
@@ -54,61 +75,86 @@ const DisplayMessage = ({ message, userObj }) => {
     };
     reader.readAsDataURL(theFile);
   };
+  console.log(isOwner);
   return (
     <>
       {editing ? (
         <>
-          <form className="comm_chateditingBox" onSubmit={onSubmit}>
-            <input
-              type="text"
-              className="comm_chateditingText"
-              value={newTextMessage}
-              onChange={onChange}
-            />
-            {newAttachmentUrl && (
-              <img className="comm_editingimg" src={newAttachmentUrl} />
-            )}
-            <div className="comm_edit_btnBox">
-              {newAttachmentUrl ? (
-                <button
-                  onClick={onClearButtonClick}
-                  className="comm_editClearBtn"
-                  type="button"
-                >
-                  Clear Photo
-                </button>
-              ) : (
-                <>
-                  <label
-                    className="comm_addphotoBtn"
-                    htmlFor="comm_update_photoBtn"
-                  >
-                    Add Photo
-                  </label>
-                  <input
-                    className="comm_addphotoInput"
-                    id="comm_update_photoBtn"
-                    type="file"
-                    accept="image/*"
-                    onChange={onFileChange}
-                  />
-                </>
-              )}
-
+          {isOwner ? (
+            <form className="comm_chateditingBox" onSubmit={onSubmit}>
               <input
-                type="submit"
-                className="comm_edit_submitBtn"
-                value="Update"
+                type="text"
+                className="comm_chateditingText"
+                value={newTextMessage}
+                onChange={onChange}
               />
-              <button
-                className="comm_edit_cancelBtn"
-                type="button"
-                onClick={toggleEditing}
-              >
-                Cancel
-              </button>
+              {newAttachmentUrl && (
+                <img className="comm_editingimg" src={newAttachmentUrl} />
+              )}
+              <div className="comm_edit_btnBox">
+                {newAttachmentUrl ? (
+                  <button
+                    onClick={onClearButtonClick}
+                    className="comm_editClearBtn"
+                    type="button"
+                  >
+                    <FontAwesomeIcon icon={faEraser} />
+                  </button>
+                ) : (
+                  <>
+                    <label
+                      className="comm_addphotoBtn"
+                      htmlFor="comm_update_photoBtn"
+                    >
+                      <FontAwesomeIcon icon={faPhotoVideo} />
+                    </label>
+                    <input
+                      className="comm_addphotoInput"
+                      id="comm_update_photoBtn"
+                      type="file"
+                      accept="image/*"
+                      onChange={onFileChange}
+                    />
+                  </>
+                )}
+                <button
+                  className="comm_edit_cancelBtn"
+                  type="button"
+                  onClick={toggleEditing}
+                >
+                  <FontAwesomeIcon icon={faUndo} />
+                </button>
+                <button
+                  type="button"
+                  className="comm_edit_deleteBtn"
+                  onClick={onDeleteButtonClick}
+                >
+                  <FontAwesomeIcon icon={faTrash} />
+                </button>
+                <input
+                  type="submit"
+                  className="comm_edit_submitBtn"
+                  value="&rarr;"
+                />
+              </div>
+            </form>
+          ) : (
+            <div className="comm_chateditingBox" onSubmit={onSubmit}>
+              <span className="comm_chat_prev">{message.text}</span>
+              {newAttachmentUrl && (
+                <img className="comm_editingimg" src={newAttachmentUrl} />
+              )}
+              <div className="comm_edit_btnBox">
+                <button
+                  className="comm_edit_cancelBtn"
+                  type="button"
+                  onClick={toggleEditing}
+                >
+                  <FontAwesomeIcon icon={faUndo} />
+                </button>
+              </div>
             </div>
-          </form>
+          )}
         </>
       ) : (
         <>

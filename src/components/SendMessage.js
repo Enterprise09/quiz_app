@@ -41,7 +41,7 @@ const SendMessage = ({ userObj }) => {
     const messageObj = {
       text: message,
       createAt: Date.now(),
-      createorId: userObj.uid,
+      creatorId: userObj.uid,
       attachmentUrl,
     };
     await dbService.collection("message").add(messageObj);

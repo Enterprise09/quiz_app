@@ -29,6 +29,7 @@ const Community = ({ userObj }) => {
             key={message.id}
             message={message}
             userObj={userObj}
+            isOwner={message.creatorId === userObj.uid}
           />
         ))}
       </div>

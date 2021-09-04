@@ -136,7 +136,8 @@
 .comm_editClearBtn,
 .comm_edit_submitBtn,
 .comm_edit_cancelBtn,
-.comm_addphotoBtn {
+.comm_addphotoBtn,
+.comm_edit_deleteBtn {
   flex: 1;
   cursor: pointer;
 }
@@ -150,4 +151,9 @@
 
 .comm_addphotoInput {
   display: none;
+}
+
+.comm_chat_prev {
+  font-size: 17px;
+  text-align: left;
 }
