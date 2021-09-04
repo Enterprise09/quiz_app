@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { dbService } from "../Firebaseconfig";
+import { dbService, storageService } from "../Firebaseconfig";
+import { v4 as uuidv4 } from "uuid";
 
-const DisplayMessage = ({ message }) => {
+const DisplayMessage = ({ message, userObj }) => {
   const [editing, setEditing] = useState(false);
   const [newTextMessage, setNewTextMessage] = useState(message.text);
   const [newAttachmentUrl, setNewAttachmentUrl] = useState(
@@ -10,6 +11,7 @@ const DisplayMessage = ({ message }) => {
   const toggleEditing = () => {
     setEditing((prev) => !prev);
     setNewAttachmentUrl(message.attachmentUrl);
+    setNewTextMessage(message.text);
   };
   const onClearButtonClick = () => {
     const ok = window.confirm("사진을 삭제하시겠습니까?");
@@ -17,8 +19,20 @@ const DisplayMessage = ({ message }) => {
       setNewAttachmentUrl("");
     }
   };
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
+    let attachmentUrl = message.attachmentUrl;
+    if (newAttachmentUrl !== message.attachmentUrl) {
+      const photoRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`);
+      const response = await photoRef.putString(newAttachmentUrl, "data_url");
+      attachmentUrl = await response.ref.getDownloadURL();
+    }
+    await dbService.doc(`message/${message.id}`).update({
+      text: newTextMessage + "",
+      attachmentUrl,
+      updateAt: Date.now(),
+    });
+    toggleEditing();
   };
   const onChange = (event) => {
     const {
@@ -40,7 +54,6 @@ const DisplayMessage = ({ message }) => {
     };
     reader.readAsDataURL(theFile);
   };
-  const onAddPhotoClick = () => {};
   return (
     <>
       {editing ? (
