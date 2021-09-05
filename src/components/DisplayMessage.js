@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { dbService, storageService } from "../Firebaseconfig";
 import { v4 as uuidv4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEraser,
+  faHeart,
   faPhotoVideo,
   faTrash,
   faUndo,
-  faWindowClose,
 } from "@fortawesome/free-solid-svg-icons";
-import { icon } from "@fortawesome/fontawesome-svg-core";
-import { faKorvue } from "@fortawesome/free-brands-svg-icons";
+import ReplyMessage from "./ReplyMessage";
 
 const DisplayMessage = ({ message, userObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
@@ -18,6 +17,7 @@ const DisplayMessage = ({ message, userObj, isOwner }) => {
   const [newAttachmentUrl, setNewAttachmentUrl] = useState(
     message.attachmentUrl
   );
+  const [love, setLove] = useState(message.love);
   const toggleEditing = () => {
     setEditing((prev) => !prev);
     setNewAttachmentUrl(message.attachmentUrl);
@@ -75,6 +75,12 @@ const DisplayMessage = ({ message, userObj, isOwner }) => {
     };
     reader.readAsDataURL(theFile);
   };
+  const onHerartClick = async () => {
+    // await setLove((prev) => prev + 1);
+    await dbService.doc(`message/${message.id}`).update({
+      love: love + 1,
+    });
+  };
   console.log(isOwner);
   return (
     <>
@@ -92,6 +98,10 @@ const DisplayMessage = ({ message, userObj, isOwner }) => {
                 <img className="comm_editingimg" src={newAttachmentUrl} />
               )}
               <div className="comm_edit_btnBox">
+                <div className="comm_edit_loveBox">
+                  <FontAwesomeIcon icon={faHeart} color="#FF0000" />{" "}
+                  <span>{love}</span>
+                </div>
                 {newAttachmentUrl ? (
                   <button
                     onClick={onClearButtonClick}
@@ -145,6 +155,10 @@ const DisplayMessage = ({ message, userObj, isOwner }) => {
                 <img className="comm_editingimg" src={newAttachmentUrl} />
               )}
               <div className="comm_edit_btnBox">
+                <button type="button" onClick={onHerartClick}>
+                  <FontAwesomeIcon icon={faHeart} color="#FF0000" />{" "}
+                  <span>{love}</span>
+                </button>
                 <button
                   className="comm_edit_cancelBtn"
                   type="button"
@@ -153,6 +167,7 @@ const DisplayMessage = ({ message, userObj, isOwner }) => {
                   <FontAwesomeIcon icon={faUndo} />
                 </button>
               </div>
+              <ReplyMessage />
             </div>
           )}
         </>

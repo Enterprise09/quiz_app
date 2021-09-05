@@ -133,6 +133,11 @@
   margin-top: 10px;
 }
 
+.comm_edit_loveBox {
+  background-color: white;
+  flex: 1;
+}
+
 .comm_editClearBtn,
 .comm_edit_submitBtn,
 .comm_edit_cancelBtn,
@@ -156,4 +161,22 @@
 .comm_chat_prev {
   font-size: 17px;
   text-align: left;
+}
+
+.comm_reply_form {
+  display: flex;
+  margin-top: 20px;
+}
+
+.comm_reply_text {
+  flex: 15;
+  font-size: 17px;
+  padding: 5px;
+  border: none;
+}
+
+.comm_reply_submitBtn {
+  flex: 1;
+  background-color: white;
+  border: none;
 }
