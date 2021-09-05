@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { dbService, storageService } from "../Firebaseconfig";
 import { v4 as uuidv4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,6 +18,13 @@ const DisplayMessage = ({ message, userObj, isOwner }) => {
     message.attachmentUrl
   );
   const [love, setLove] = useState(message.love);
+  useEffect(() => {
+    dbService.doc(`message/${message.id}`).onSnapshot((snapshot) => {
+      const { love } = snapshot.data();
+      console.log(love);
+      setLove(love);
+    });
+  }, []);
   const toggleEditing = () => {
     setEditing((prev) => !prev);
     setNewAttachmentUrl(message.attachmentUrl);
@@ -76,9 +83,9 @@ const DisplayMessage = ({ message, userObj, isOwner }) => {
     reader.readAsDataURL(theFile);
   };
   const onHerartClick = async () => {
-    // await setLove((prev) => prev + 1);
+    await setLove((prev) => prev + 1);
     await dbService.doc(`message/${message.id}`).update({
-      love: love + 1,
+      love: love,
     });
   };
   console.log(isOwner);
@@ -155,10 +162,16 @@ const DisplayMessage = ({ message, userObj, isOwner }) => {
                 <img className="comm_editingimg" src={newAttachmentUrl} />
               )}
               <div className="comm_edit_btnBox">
-                <button type="button" onClick={onHerartClick}>
-                  <FontAwesomeIcon icon={faHeart} color="#FF0000" />{" "}
-                  <span>{love}</span>
-                </button>
+                <div className="comm_edit_loveBox">
+                  <button
+                    type="button"
+                    onClick={onHerartClick}
+                    className="comm_edit_loveBtn"
+                  >
+                    <FontAwesomeIcon icon={faHeart} color="#FF0000" />{" "}
+                    <span>{message.love}</span>
+                  </button>
+                </div>
                 <button
                   className="comm_edit_cancelBtn"
                   type="button"

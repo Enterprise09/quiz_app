@@ -138,6 +138,18 @@
   flex: 1;
 }
 
+.comm_edit_loveBtn {
+  background-color: white;
+  border: none;
+  flex: 1;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.comm_edit_loveBtn :hover {
+  background-color: aliceblue;
+}
+
 .comm_editClearBtn,
 .comm_edit_submitBtn,
 .comm_edit_cancelBtn,
